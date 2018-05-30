@@ -15,12 +15,10 @@ test.beforeEach(function (test) {
   const segment = new AWSXRay.Segment('parent');
 
   test.context.segment = segment;
-  traceResolvers(schema, function (resolver, parent, args, ctx, info) {
-    return ctx.segment;
-  });
+  traceResolvers(schema);
   test.context.graphql = ns.bind(function (query) {
     AWSXRay.setSegment(segment);
-    return graphql(schema, query, null, {segment});
+    return graphql(schema, query);
   });
 });
 
