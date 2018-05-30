@@ -8,6 +8,7 @@
     "posttest": "yarn lint",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
+  "main": "src/traceResolvers.js",
   "engines": {
     "node": ">=8"
   },
