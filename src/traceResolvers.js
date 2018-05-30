@@ -20,14 +20,18 @@ const tracer = function (resolver, parent, args, ctx, info) {
   AWSXRay.captureAsyncFunc(`GraphQL ${fieldPath}`, function (subsegment) {
     result = resolver();
 
-    if (isPromise(result)) {
-      result.then(function () {
+    // When AWS_XRAY_CONTEXT_MISSING is set to LOG_MISSING and no context was
+    // found, then the subsegment will be null and nothing should be done
+    if (subsegment) {
+      if (isPromise(result)) {
+        result.then(function () {
+          subsegment.close();
+        }).catch(function (error) {
+          subsegment.close(error);
+        });
+      } else {
         subsegment.close();
-      }).catch(function (error) {
-        subsegment.close(error);
-      });
-    } else {
-      subsegment.close();
+      }
     }
   });
 
