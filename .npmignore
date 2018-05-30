@@ -1,0 +1,5 @@
+test/
+.eslintrc*
+.travis*
+TODO.MD
+.nyc_output/
