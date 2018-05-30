@@ -3,3 +3,4 @@ test/
 .travis*
 TODO.MD
 .nyc_output/
+images/
