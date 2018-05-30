@@ -1,6 +1,6 @@
 {
   "name": "graphql-resolvers-xray-tracing",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A GraphQL middleware to enable X-Ray tracing subsegments for GraphQL resolvers",
   "scripts": {
     "lint": "eslint .",
