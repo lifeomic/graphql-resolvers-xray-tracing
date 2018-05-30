@@ -1,0 +1,55 @@
+{
+  "name": "graphql-resolvers-xray-tracing",
+  "version": "1.0.0",
+  "description": "A GraphQL middleware to enable X-Ray tracing subsegments for GraphQL resolvers",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "nyc ava",
+    "posttest": "yarn lint",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "graphql",
+    "resolvers",
+    "middleware",
+    "xray",
+    "aws"
+  ],
+  "author": "Matt Lavin <matt.lavin@lifeomic.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "coveralls": "^3.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-semistandard": "^12.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-lodash": "^2.7.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "graphql": "^0.13.2",
+    "graphql-tools": "^3.0.2",
+    "nock": "^9.2.6",
+    "nyc": "^11.8.0",
+    "promise-retry": "^1.1.1",
+    "sinon": "^5.0.10",
+    "uuid": "^3.2.1"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "dependencies": {
+    "aws-xray-sdk-core": "^1.2.0",
+    "graphql-middleware": "^1.2.5",
+    "is-promise": "^2.1.0"
+  }
+}
