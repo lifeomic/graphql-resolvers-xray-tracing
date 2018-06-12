@@ -9,7 +9,7 @@ To enable X-Ray subsegment creation for GraphQL resolvers, add this package as a
 code like this:
 
 ```javascript
-const traceResolveres = require('@lifeomic/graphql-resolvers-xray-tracing');
+const traceResolvers = require('@lifeomic/graphql-resolvers-xray-tracing');
 const schema = makeExecutableSchema( ... );
 traceResolvers(schema);
 ```
