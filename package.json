@@ -50,7 +50,7 @@
     "branches": 100
   },
   "dependencies": {
-    "aws-xray-sdk-core": "^1.2.0",
+    "aws-xray-sdk-core": "https://github.com/mdlavin/aws-xray-sdk-node.git#core-only-batch-segment-sending",
     "graphql-middleware": "^1.2.5",
     "is-promise": "^2.1.0"
   },
