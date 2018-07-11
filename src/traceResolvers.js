@@ -1,4 +1,4 @@
-const { applyMiddleware } = require('graphql-middleware');
+const { applyMiddlewareToDeclaredResolvers } = require('graphql-middleware');
 const AWSXRay = require('aws-xray-sdk-core');
 const isPromise = require('is-promise');
 
@@ -39,5 +39,5 @@ const tracer = function (resolver, parent, args, ctx, info) {
 };
 
 module.exports = function (schema) {
-  applyMiddleware(schema, tracer);
+  applyMiddlewareToDeclaredResolvers(schema, tracer);
 };
