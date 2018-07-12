@@ -497,16 +497,16 @@ aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
 
-"aws-xray-sdk-core@https://github.com/mdlavin/aws-xray-sdk-node.git#core-only-batch-segment-sending":
-  version "1.2.0"
-  resolved "https://github.com/mdlavin/aws-xray-sdk-node.git#345e553967cb645a130d760c07a0a123c0bef1a6"
+aws-xray-sdk-core@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/aws-xray-sdk-core/-/aws-xray-sdk-core-1.3.0.tgz#84e0e5e96fde0f7d753d420913f93e1d7d637ff9"
   dependencies:
     atomic-batcher "^1.0.2"
     continuation-local-storage "^3.2.0"
-    moment "^2.15.2"
+    date-fns "^1.29.0"
+    lodash "^4.17.10"
     pkginfo "^0.4.0"
     semver "^5.3.0"
-    underscore "^1.8.3"
     winston "^2.2.0"
 
 aws4@^1.6.0:
@@ -1301,6 +1301,10 @@ dashdash@^1.12.0:
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
+
+date-fns@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
 
 date-time@^0.1.1:
   version "0.1.1"
@@ -2847,7 +2851,7 @@ lodash.merge@^4.6.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
 
-lodash@^4.17.4, lodash@^4.17.5:
+lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -3057,10 +3061,6 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-moment@^2.15.2:
-  version "2.22.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
 
 ms@2.0.0:
   version "2.0.0"
@@ -4415,10 +4415,6 @@ uglify-to-browserify@~1.0.0:
 uid2@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/uid2/-/uid2-0.0.3.tgz#483126e11774df2f71b8b639dcd799c376162b82"
-
-underscore@^1.8.3:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.0.tgz#31dbb314cfcc88f169cd3692d9149d81a00a73e4"
 
 union-value@^1.0.0:
   version "1.0.0"
