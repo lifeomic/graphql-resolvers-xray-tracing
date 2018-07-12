@@ -30,7 +30,7 @@
   "author": "LifeOmic <development@lifeomic.com>",
   "license": "MIT",
   "devDependencies": {
-    "@lifeomic/eslint-plugin-node": "^1.1.1",
+    "@lifeomic/eslint-plugin-node": "^1.1.2",
     "ava": "^0.25.0",
     "coveralls": "^3.0.1",
     "eslint": "^5.0.0",
