@@ -1,6 +1,6 @@
 {
   "name": "@lifeomic/graphql-resolvers-xray-tracing",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A GraphQL middleware to enable X-Ray tracing subsegments for GraphQL resolvers",
   "homepage": "https://github.com/lifeomic/graphql-resolvers-xray-tracing#readme",
   "bugs": {
