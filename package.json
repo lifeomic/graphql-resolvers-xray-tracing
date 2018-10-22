@@ -33,14 +33,14 @@
     "@lifeomic/eslint-plugin-node": "^1.1.2",
     "ava": "^0.25.0",
     "coveralls": "^3.0.1",
-    "eslint": "^5.0.0",
+    "eslint": "^5.7.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.2",
-    "nock": "^10.0.0",
-    "nyc": "^12.0.1",
+    "nock": "^10.0.1",
+    "nyc": "^13.1.0",
     "promise-retry": "^1.1.1",
-    "sinon": "^6.0.0",
-    "uuid": "^3.2.1"
+    "sinon": "^7.0.0",
+    "uuid": "^3.3.2"
   },
   "nyc": {
     "check-coverage": true,
