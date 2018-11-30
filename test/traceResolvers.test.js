@@ -42,18 +42,23 @@ function waitForSegmentCount (test, count) {
 
 test.serial('Resolvers can return a value when DISABLE_XRAY is set', async function (test) {
   process.env.DISABLE_XRAY = true;
-  const {graphql} = test.context;
-  const result = await graphql('{ hello }');
+  try {
+    const {graphql} = test.context;
+    const result = await graphql('{ hello }');
 
-  if (result.errors) {
-    throw result.errors[0];
-  }
-  test.deepEqual(result, {
-    data: {
-      hello: 'world'
+    if (result.errors) {
+      throw result.errors[0];
     }
-  });
-  delete process.env.DISABLE_XRAY;
+    test.deepEqual(result, {
+      data: {
+        hello: 'world'
+      }
+    });
+  } catch (err) {
+    test.fail(err);
+  } finally {
+    delete process.env.DISABLE_XRAY;
+  }
 });
 
 test('Traced resolvers can return a value', async function (test) {
