@@ -14,7 +14,7 @@ function fieldPathFromInfo (info) {
 }
 
 const tracer = function (resolver, parent, args, ctx, info) {
-  if (process.env.DISABLE_XRAY_LOGGING) {
+  if (process.env.DISABLE_XRAY) {
     return resolver();
   }
   let result;

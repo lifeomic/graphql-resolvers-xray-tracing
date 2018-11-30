@@ -40,8 +40,8 @@ function waitForSegmentCount (test, count) {
   }, {retries: 10, minTimeout: 10, maxTimeout: 100});
 }
 
-test.serial('Resolvers can return a value when DISABLE_XRAY_LOGGING is set', async function (test) {
-  process.env.DISABLE_XRAY_LOGGING = true;
+test.serial('Resolvers can return a value when DISABLE_XRAY is set', async function (test) {
+  process.env.DISABLE_XRAY = true;
   const {graphql} = test.context;
   const result = await graphql('{ hello }');
 
@@ -53,7 +53,7 @@ test.serial('Resolvers can return a value when DISABLE_XRAY_LOGGING is set', asy
       hello: 'world'
     }
   });
-  delete process.env.DISABLE_XRAY_LOGGING;
+  delete process.env.DISABLE_XRAY;
 });
 
 test('Traced resolvers can return a value', async function (test) {
