@@ -18,7 +18,7 @@ test.beforeEach(function (test) {
   };
 });
 
-test.always.afterEach(function (test) {
+test.afterEach.always(function (test) {
   nock.enableNetConnect();
   nock.cleanAll();
 });
