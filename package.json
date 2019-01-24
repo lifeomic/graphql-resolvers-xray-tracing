@@ -51,7 +51,7 @@
     "branches": 100
   },
   "dependencies": {
-    "graphql-middleware": "^2.0.1",
+    "graphql-middleware": "^3.0.1",
     "is-promise": "^2.1.0"
   },
   "publishConfig": {
