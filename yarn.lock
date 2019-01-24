@@ -416,9 +416,9 @@ async-each@^1.0.0:
   integrity sha1-GdOGodntxufByF04iu28xW0zYC0=
 
 async-listener@^0.6.0:
-  version "0.6.9"
-  resolved "https://registry.yarnpkg.com/async-listener/-/async-listener-0.6.9.tgz#51bc95e41095417f33922fb4dee4f232b3226488"
-  integrity sha512-E7Z2/QMs0EPt/o9wpYO/J3hmMCDdr1aVDS3ttlur5D5JlZtxhfuOwi4e7S8zbYIxA5qOOYdxfqGj97XAfdNvkQ==
+  version "0.6.10"
+  resolved "https://registry.yarnpkg.com/async-listener/-/async-listener-0.6.10.tgz#a7c97abe570ba602d782273c0de60a51e3e17cbc"
+  integrity sha512-gpuo6xOyF4D5DE5WvyqZdPA3NGhiT6Qf07l7DCB0wwDEsLvDIbCr6j9S5aj5Ch96dLace5tXVzWBZkxU/c5ohw==
   dependencies:
     semver "^5.3.0"
     shimmer "^1.1.0"
@@ -556,9 +556,9 @@ ava@^0.25.0:
     update-notifier "^2.3.0"
 
 aws-sdk@^2.304.0:
-  version "2.339.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.339.0.tgz#869ce594b87854c723c6157c2a56f101334ce258"
-  integrity sha512-ScEfOR/JhtDuCVPkwB3mMLDgo8YrcSpFpHmoZLRNbefrQ9yTI+zTJqTrdeArNdwOLLoc/yCbqgHRQfXUCcfyfQ==
+  version "2.393.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.393.0.tgz#18e968760ff1d541665de090fcb46a9643165a08"
+  integrity sha512-PSsIoLusMl8yygd8CohBFVnzSiDZy6EPKnGs5MWT7U/kjwablAXN23voyi6K8vOaEC8J9lgbWW9P62wcijuhdQ==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -567,7 +567,7 @@ aws-sdk@^2.304.0:
     querystring "0.2.0"
     sax "1.2.1"
     url "0.10.3"
-    uuid "3.1.0"
+    uuid "3.3.2"
     xml2js "0.4.19"
 
 aws-sign2@~0.7.0:
@@ -576,9 +576,9 @@ aws-sign2@~0.7.0:
   integrity sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=
 
 aws-xray-sdk-core@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/aws-xray-sdk-core/-/aws-xray-sdk-core-2.0.1.tgz#ce1f87f34f0aab1e5b5915f77e944b53dcee9c81"
-  integrity sha512-HSJ0MqNU8emSZ21awdqrEl8bGNKC/nRw36bFxDxYTJPpls6sTE5qs00h3hqqfq8P4i+WUydr036tpq2OkK76Zg==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/aws-xray-sdk-core/-/aws-xray-sdk-core-2.2.0.tgz#d852cff226e24ec2795b81e413cf888b89828404"
+  integrity sha512-Qi3BNjoaZgmQLluRQxY9EnHZPVyPvWvcR3HzVA4+dE9Uu8iWPWKkQ0e6XwA6EkFCO4OQMZmnVl+3yUkZ8aHGQQ==
   dependencies:
     atomic-batcher "^1.0.2"
     aws-sdk "^2.304.0"
@@ -1498,9 +1498,9 @@ dashdash@^1.12.0:
     assert-plus "^1.0.0"
 
 date-fns@^1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
-  integrity sha512-lbTXWZ6M20cWH8N9S6afb0SBm6tMk+uUg6z3MqHPKE9atmsY3kJkTm8vKe93izJ2B2+q5MV990sM2CHgtAZaOw==
+  version "1.30.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
+  integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
 date-time@^0.1.1:
   version "0.1.1"
@@ -4589,9 +4589,9 @@ shebang-regex@^1.0.0:
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
 shimmer@^1.1.0, shimmer@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.0.tgz#f966f7555789763e74d8841193685a5e78736665"
-  integrity sha512-xTCx2vohXC2EWWDqY/zb4+5Mu28D+HYNSOuFzsyRDRvI/e1ICb69afwaUwfjr+25ZXldbOLyp+iDUZHq8UnTag==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.1.tgz#610859f7de327b587efebf501fb43117f9aff337"
+  integrity sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -5175,12 +5175,7 @@ util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-uuid@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
-  integrity sha512-DIWtzUkw04M4k3bf1IcpS2tngXEL26YUD2M0tMDUpnUrz2hgzUBlD55a4FjdLGPvfHxS6uluGWvaVEqgBcVa+g==
-
-uuid@^3.1.0, uuid@^3.3.2:
+uuid@3.3.2, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==

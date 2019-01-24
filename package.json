@@ -32,6 +32,7 @@
   "devDependencies": {
     "@lifeomic/eslint-plugin-node": "^1.1.2",
     "ava": "^0.25.0",
+    "aws-xray-sdk-core": "^2.0.0",
     "coveralls": "^3.0.1",
     "eslint": "^5.7.0",
     "graphql": "^14.0.2",
@@ -50,11 +51,13 @@
     "branches": 100
   },
   "dependencies": {
-    "aws-xray-sdk-core": "^2.0.0",
     "graphql-middleware": "^2.0.1",
     "is-promise": "^2.1.0"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "aws-xray-sdk-core": "^2.0.0"
   }
 }
