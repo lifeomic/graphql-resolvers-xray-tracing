@@ -56,6 +56,11 @@
     "graphql-middleware": "^3.0.1",
     "is-promise": "^2.1.0"
   },
+  "ava": {
+    "helpers": [
+      "test/helpers/**/*"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
