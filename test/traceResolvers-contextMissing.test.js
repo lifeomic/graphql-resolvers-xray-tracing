@@ -24,7 +24,7 @@ test.afterEach.always(function (test) {
 });
 
 test('Traced resolvers can return a value', async function (test) {
-  const {graphql} = test.context;
+  const { graphql } = test.context;
   const result = await graphql('{ hello }');
 
   if (result.errors) {

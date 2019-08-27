@@ -37,11 +37,11 @@ function waitForSegmentCount (test, count) {
     } catch (error) {
       retry(error);
     }
-  }, {retries: 10, minTimeout: 10, maxTimeout: 100});
+  }, { retries: 10, minTimeout: 10, maxTimeout: 100 });
 }
 
 test('Traced resolvers can return a value', async function (test) {
-  const {graphql} = test.context;
+  const { graphql } = test.context;
   const result = await graphql('{ hello }');
 
   if (result.errors) {
@@ -55,7 +55,7 @@ test('Traced resolvers can return a value', async function (test) {
 });
 
 test('Trace segments are created for resolvers', async function (test) {
-  const {segment, graphql} = test.context;
+  const { segment, graphql } = test.context;
   await graphql('{ hello }');
 
   test.is(segment.subsegments.length, 1);
@@ -65,7 +65,7 @@ test('Trace segments are created for resolvers', async function (test) {
 });
 
 test('Trace segments are reported as errors when resolver throws an error synchronously', async function (test) {
-  const {segment, graphql} = test.context;
+  const { segment, graphql } = test.context;
   await graphql('{ throwsSynchronously }');
 
   test.is(segment.subsegments.length, 1);
@@ -75,7 +75,7 @@ test('Trace segments are reported as errors when resolver throws an error synchr
 });
 
 async function testAsyncResolver (test, unblockQueryBuilder) {
-  const {segment, graphql} = test.context;
+  const { segment, graphql } = test.context;
 
   const createResult = await graphql('mutation { createBlocking }');
   const blockedId = createResult.data.createBlocking;
@@ -119,7 +119,7 @@ test('Resolver errors cause the segment to be marked as an error', async functio
 });
 
 test('Trace segments are created for nested resolvers', async function (test) {
-  const {segment, graphql} = test.context;
+  const { segment, graphql } = test.context;
   await graphql('{ parent { name } }');
 
   test.is(segment.subsegments.length, 2);
