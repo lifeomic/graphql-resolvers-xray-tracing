@@ -30,18 +30,18 @@ function createBlocking () {
 }
 
 function waitFor (obj, args) {
-  const {promise} = blocked.get(args.id);
+  const { promise } = blocked.get(args.id);
   return promise;
 }
 
 function resolve (obj, args) {
-  const {resolve} = blocked.get(args.id);
+  const { resolve } = blocked.get(args.id);
   resolve();
 }
 
 function reject (obj, args) {
   const id = args.id;
-  const {reject} = blocked.get(id);
+  const { reject } = blocked.get(id);
   reject(new Error(`Blocking work ${id} failed`));
 }
 
@@ -89,4 +89,4 @@ type Mutation {
 }
 `;
 
-module.exports = makeExecutableSchema({typeDefs, resolvers});
+module.exports = makeExecutableSchema({ typeDefs, resolvers });
