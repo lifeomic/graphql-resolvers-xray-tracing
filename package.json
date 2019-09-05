@@ -1,6 +1,6 @@
 {
   "name": "@lifeomic/graphql-resolvers-xray-tracing",
-  "version": "3.0.2",
+  "version": "4.0.0-alpha",
   "description": "A GraphQL middleware to enable X-Ray tracing subsegments for GraphQL resolvers",
   "homepage": "https://github.com/lifeomic/graphql-resolvers-xray-tracing#readme",
   "bugs": {
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@lifeomic/eslint-plugin-node": "^2.0.1",
     "@types/graphql": "^14.0.7",
-    "ava": "^1.1.0",
+    "ava": "^2.3.0",
     "aws-xray-sdk-core": "^2.0.0",
     "coveralls": "^3.0.1",
     "eslint": "^6",
@@ -55,6 +55,11 @@
   "dependencies": {
     "graphql-middleware": "^4.0.0",
     "is-promise": "^2.1.0"
+  },
+  "ava": {
+    "helpers": [
+      "test/helpers/**/*"
+    ]
   },
   "publishConfig": {
     "access": "public"
