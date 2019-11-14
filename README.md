@@ -1,5 +1,5 @@
-GraphQL Middleware to add X-Ray tracing for resolvers
-=====================================================
+# GraphQL Middleware to add X-Ray tracing for resolvers
+
 [![npm](https://img.shields.io/npm/v/@lifeomic/graphql-resolvers-xray-tracing.svg)](https://www.npmjs.com/package/@lifeomic/graphql-resolvers-xray-tracing)
 [![Greenkeeper badge](https://badges.greenkeeper.io/lifeomic/graphql-resolvers-xray-tracing.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/lifeomic/graphql-resolvers-xray-tracing.svg?branch=master)](https://travis-ci.org/lifeomic/graphql-resolvers-xray-tracing)
