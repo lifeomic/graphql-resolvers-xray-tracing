@@ -43,7 +43,7 @@
     "nyc": "^15.0.0",
     "promise-retry": "^1.1.1",
     "sinon": "^7.0.0",
-    "uuid": "^3.3.2"
+    "uuid": "^7.0.0"
   },
   "nyc": {
     "check-coverage": true,
