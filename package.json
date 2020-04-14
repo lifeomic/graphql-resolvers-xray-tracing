@@ -38,7 +38,7 @@
     "coveralls": "^3.0.1",
     "eslint": "^6",
     "graphql": "^14.0.2",
-    "graphql-tools": "^4.0.2",
+    "graphql-tools": "^5.0.0",
     "nock": "^11.3.3",
     "nyc": "^15.0.0",
     "promise-retry": "^1.1.1",
