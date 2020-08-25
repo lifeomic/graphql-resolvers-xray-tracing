@@ -17,3 +17,15 @@ traceResolvers(schema);
 After enabling X-Ray tracing, you should see new subsegments in your X-Ray traces like this:
 
 ![Image of X-Ray trace](images/trace-screenshot.png)
+
+## Local Development
+
+If you would like to run your GraphQL server without tracing the resolvers (such as during local development), you can use environment variables to conditionally wrap them.  For example, the AWS Lambda runtime injects the `AWS_LAMBDA_FUNCTION_NAME` which you can use so that the resolvers are only traced when running on Lambda:
+
+```js
+const traceResolvers = require('@lifeomic/graphql-resolvers-xray-tracing');
+const schema = makeExecutableSchema( ... );
+if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  traceResolvers(schema);
+}
+```
