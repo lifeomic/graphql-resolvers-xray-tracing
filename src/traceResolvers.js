@@ -27,7 +27,7 @@ const tracer = function (resolver, parent, args, ctx, info) {
         result.then(function () {
           subsegment.close();
         }).catch(function (error) {
-          subsegment.close(error.message);
+          subsegment.close(serializeError(error));
         });
       } else {
         subsegment.close();
@@ -37,6 +37,21 @@ const tracer = function (resolver, parent, args, ctx, info) {
 
   return result;
 };
+
+/* Constructs an xray-safe error object (no circular structure errors) */
+export const serializeError = (e: string | Error) => {
+  if (typeof e === 'string') {
+    return e;
+  }
+
+  // See here for how error properties are parsed - https://github.com/aws/aws-xray-sdk-node/blob/master/packages/core/lib/segments/attributes/captured_exception.js#L12
+  return {
+    message: e.message,
+    name: e.name,
+    stack: e.stack,
+  };
+};
+
 
 module.exports = function (schema) {
   applyMiddlewareToDeclaredResolvers(schema, tracer);
