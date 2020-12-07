@@ -27,7 +27,7 @@ const tracer = function (resolver, parent, args, ctx, info) {
         result.then(function () {
           subsegment.close();
         }).catch(function (error) {
-          subsegment.close(error);
+          subsegment.close(error.message);
         });
       } else {
         subsegment.close();
