@@ -33,17 +33,17 @@
   "devDependencies": {
     "@lifeomic/eslint-plugin-node": "^2.0.1",
     "@types/graphql": "^14.0.7",
-    "ava": "^2.3.0",
-    "aws-xray-sdk-core": "^2.0.0",
-    "coveralls": "^3.0.1",
-    "eslint": "^6",
+    "ava": "^3.14.0",
+    "aws-xray-sdk-core": "^3.2.0",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.16.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.2",
-    "nock": "^11.3.3",
-    "nyc": "^15.0.0",
-    "promise-retry": "^1.1.1",
-    "sinon": "^7.0.0",
-    "uuid": "^3.3.2"
+    "nock": "^13.0.5",
+    "nyc": "^15.1.0",
+    "promise-retry": "^2.0.1",
+    "sinon": "^9.2.2",
+    "uuid": "^8.3.2"
   },
   "nyc": {
     "check-coverage": true,
@@ -54,11 +54,12 @@
   },
   "dependencies": {
     "graphql-middleware": "^4.0.0",
-    "is-promise": "^2.1.0"
+    "is-promise": "^4.0.0"
   },
   "ava": {
-    "helpers": [
-      "test/helpers/**/*"
+    "verbose": true,
+    "files": [
+      "test/**/*.test.js"
     ]
   },
   "publishConfig": {
