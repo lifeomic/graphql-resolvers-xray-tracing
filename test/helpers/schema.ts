@@ -1,5 +1,5 @@
-const { makeExecutableSchema } = require('graphql-tools');
-const { v4: uuid } = require('uuid');
+import { makeExecutableSchema } from 'graphql-tools';
+import { v4 as uuid } from 'uuid';
 
 const blocked = new Map();
 
@@ -29,17 +29,19 @@ function createBlocking () {
   return id;
 }
 
-function waitFor (obj, args) {
+type Args = { id: string };
+
+function waitFor (obj: any, args: Args) {
   const { promise } = blocked.get(args.id);
   return promise;
 }
 
-function resolve (obj, args) {
+function resolve (obj: any, args: Args) {
   const { resolve } = blocked.get(args.id);
   resolve();
 }
 
-function reject (obj, args) {
+function reject (obj: any, args: Args) {
   const id = args.id;
   const { reject } = blocked.get(id);
   reject(new Error(`Blocking work ${id} failed`));
@@ -89,4 +91,4 @@ type Mutation {
 }
 `;
 
-module.exports = makeExecutableSchema({ typeDefs, resolvers });
+export default makeExecutableSchema({ typeDefs, resolvers });
