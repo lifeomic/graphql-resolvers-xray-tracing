@@ -14,12 +14,12 @@
     "lint": "eslint .",
     "test": "nyc ava",
     "posttest": "yarn lint",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov > ./.nyc_output/lcov.info"
   },
   "main": "src/traceResolvers.js",
   "types": "src/traceResolvers.d.ts",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "keywords": [
     "graphql",
