@@ -1,6 +1,5 @@
-import traceResolvers from '../src/traceResolvers';
 import { graphql } from 'graphql';
-import schema from './helpers/schema';
+import { traceSchema } from './helpers/schema';
 import nock from 'nock';
 import anyTest, { TestInterface } from 'ava';
 import AWSXRay from 'aws-xray-sdk-core';
@@ -22,8 +21,8 @@ const test = anyTest as TestInterface<TestContext>;
 test.beforeEach((t) => {
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
+  const schema = traceSchema();
 
-  traceResolvers(schema);
   t.context.graphql = (query) => graphql(schema, query);
 });
 

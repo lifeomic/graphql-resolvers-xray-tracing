@@ -12,10 +12,15 @@
   },
   "scripts": {
     "lint": "eslint . -f codeframe",
+    "pretypes": "yarn cleanTypes",
+    "types": "graphql-codegen",
+    "pretest": "yarn types",
     "test": "nyc ava",
     "posttest": "yarn lint && tsc --noEmit",
+    "postinstall": "yarn types",
     "coverage": "nyc report --reporter=text-lcov > ./.nyc_output/lcov.info",
-    "prepublishOnly": "yarn tsc"
+    "prepublishOnly": "yarn tsc",
+    "cleanTypes": "rm -rf test/__generated__"
   },
   "main": "src/traceResolvers.js",
   "types": "src/traceResolvers.ts",
@@ -32,6 +37,9 @@
   "author": "LifeOmic <development@lifeomic.com>",
   "license": "MIT",
   "devDependencies": {
+    "@graphql-codegen/cli": "1.2.1",
+    "@graphql-codegen/typescript": "1.2.1",
+    "@graphql-toolkit/file-loading": "^0.10.7",
     "@lifeomic/eslint-plugin-node": "^2.0.1",
     "@types/graphql": "^14.0.7",
     "@types/promise-retry": "^1.1.3",

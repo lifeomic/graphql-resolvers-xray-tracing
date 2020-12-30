@@ -1,0 +1,17 @@
+type Parent {
+    name: String!
+}
+
+type Query {
+    hello: String!
+    throwsSynchronously: String!
+    throwsAsynchronously: String!
+    waitFor(id: String!): Boolean
+    parent: Parent!
+}
+
+type Mutation {
+    createBlocking: String!
+    resolve(id: String!): Boolean
+    reject(id: String!): Boolean
+}

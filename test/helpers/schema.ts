@@ -1,5 +1,8 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import { v4 as uuid } from 'uuid';
+import { loadFiles } from '@graphql-toolkit/file-loading';
+import path from 'path';
+import traceResolvers from '../../src/traceResolvers';
 
 const blocked = new Map();
 
@@ -8,6 +11,10 @@ function hello () {
 }
 
 function throwsSynchronously () {
+  throw new Error('Some error');
+}
+
+function throwsAsynchronously () {
   throw new Error('Some error');
 }
 
@@ -62,6 +69,7 @@ const resolvers = {
   Query: {
     hello,
     throwsSynchronously,
+    throwsAsynchronously,
     waitFor,
     parent
   },
@@ -72,23 +80,10 @@ const resolvers = {
   }
 };
 
-const typeDefs = `
-type Parent {
-  name: String!
+export function traceSchema () {
+  const schema = makeExecutableSchema({
+    typeDefs: loadFiles(path.join(__dirname, '**/*.graphql')),
+    resolvers
+  });
+  return traceResolvers(schema);
 }
-
-type Query {
-  hello: String!
-  throwsSynchronously: String!
-  waitFor(id: String!): Boolean
-  parent: Parent!
-}
-
-type Mutation {
-  createBlocking: String!
-  resolve(id: String!): Boolean
-  reject(id: String!): Boolean
-}
-`;
-
-export default makeExecutableSchema({ typeDefs, resolvers });

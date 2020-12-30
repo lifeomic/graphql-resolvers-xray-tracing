@@ -1,0 +1,9 @@
+overwrite: true
+schema: ./test/**/*.graphql
+generates:
+  test/__generated__/graphql.ts:
+    plugins:
+      - typescript
+    config:
+      useIndexSignature: true
+      namingConvention: keep
