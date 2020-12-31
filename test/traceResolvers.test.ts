@@ -1,32 +1,43 @@
-import traceResolvers from '../src/traceResolvers';
 import { graphql } from 'graphql';
-import schema from './helpers/schema';
+import { traceSchema } from './helpers/schema';
 import nock from 'nock';
 import anyTest, { ExecutionContext, TestInterface } from 'ava';
 import AWSXRay, { Segment, Subsegment } from 'aws-xray-sdk-core';
 import retryPromise from 'promise-retry';
+import { ExecutionResult, ExecutionResultDataDefault } from 'graphql/execution/execute';
+import { Mutation } from './__generated__/graphql';
 
 AWSXRay.capturePromise();
 
+type GraphQlQuery = Parameters<typeof graphql>[1];
+type Namespace = ReturnType<typeof AWSXRay.getNamespace>;
+
 interface TestContext {
+  ns: Namespace;
   segment: Segment;
-  graphql: (query: string) => Promise<any>;
+  graphql: <TData = ExecutionResultDataDefault>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
 }
 
 const test = anyTest as TestInterface<TestContext>;
 
 test.beforeEach(function (test) {
+  const schema = traceSchema();
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
 
-  const ns = AWSXRay.getNamespace();
-  const segment = new AWSXRay.Segment('parent');
+  const ns: Namespace = AWSXRay.getNamespace();
+  test.context.ns = ns;
 
+  const segment = new AWSXRay.Segment('parent');
   test.context.segment = segment;
-  traceResolvers(schema);
-  test.context.graphql = ns.bind(function (query: string) {
+
+  test.context.graphql = ns.bind(function (query: GraphQlQuery) {
     AWSXRay.setSegment(segment);
-    return graphql(schema, query);
+    try {
+      return graphql(schema, query);
+    } finally {
+      segment.close();
+    }
   });
 });
 
@@ -84,11 +95,22 @@ test('Trace segments are reported as errors when resolver throws an error synchr
   test.truthy(segment.subsegments![0].fault);
 });
 
+test('Trace segments are reported as errors when resolver throws an error asynchronously', async function (test) {
+  const { segment, graphql } = test.context;
+  await graphql('{ throwsAsynchronously }');
+
+  test.is(segment.subsegments?.length, 1);
+  test.is(segment.subsegments![0].name, 'GraphQL throwsAsynchronously');
+  test.falsy(segment.subsegments![0].in_progress);
+  // @ts-ignore
+  test.truthy(segment.subsegments![0].fault);
+});
+
 async function testAsyncResolver (test: ExecutionContext<TestContext>, unblockQueryBuilder: (id: string) => string): Promise<Subsegment> {
   const { segment, graphql } = test.context;
 
-  const createResult = await graphql('mutation { createBlocking }');
-  const blockedId = createResult.data.createBlocking;
+  const createResult = await graphql<Mutation>('mutation { createBlocking }');
+  const blockedId = createResult.data!.createBlocking;
 
   test.is(segment.subsegments?.length, 1);
   test.is(segment.subsegments![0].name, 'GraphQL createBlocking');
