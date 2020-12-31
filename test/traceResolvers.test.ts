@@ -106,14 +106,6 @@ test('Trace segments are reported as errors when resolver throws an error asynch
   test.truthy(segment.subsegments![0].fault);
 });
 
-test('Will close the root segment', async test => {
-  const { graphql } = test.context;
-  const promise = graphql('{ throwsAsynchronously }');
-  await test.notThrowsAsync(promise);
-  const result = await promise;
-  test.notThrows(() => JSON.stringify(result));
-});
-
 async function testAsyncResolver (test: ExecutionContext<TestContext>, unblockQueryBuilder: (id: string) => string): Promise<Subsegment> {
   const { segment, graphql } = test.context;
 

@@ -26,7 +26,6 @@ export default <TSource = any, TContext = any, TArgs = any>(schema: GraphQLSchem
         return result;
       } catch (error: any) {
         subsegment?.close(error);
-        (subsegment as any)?.segment?.close(error);
         throw error;
       }
     });
