@@ -18,8 +18,7 @@ export default <TSource = any, TContext = any, TArgs = any>(schema: GraphQLSchem
   const tracer: IMiddlewareResolver<TSource, TContext, TArgs> = async (resolver, parent, args, ctx, info) => {
     const fieldPath = fieldPathFromInfo(info);
     return AWSXRay.captureAsyncFunc(`GraphQL ${fieldPath}`, async (subsegment) => {
-      // When AWS_XRAY_CONTEXT_MISSING is set to LOG_MISSING and no context was
-      // found, then the subsegment will be null and nothing should be done
+      // When AWS_XRAY_CONTEXT_MISSING is set to LOG_MISSING and no context is found then subsegment is undefined.
       try {
         const result = await resolver();
         subsegment?.close();
