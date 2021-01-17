@@ -5,7 +5,7 @@ import { GraphQLSchemaWithFragmentReplacements, IMiddlewareResolver } from 'grap
 
 function fieldPathFromInfo (info: GraphQLResolveInfo) {
   let path: ResponsePath | undefined = info.path;
-  const segments = [];
+  const segments: Array<number | string> = [];
   while (path) {
     segments.unshift(path.key);
     path = path.prev;
@@ -15,7 +15,7 @@ function fieldPathFromInfo (info: GraphQLResolveInfo) {
 }
 
 export default <TSource = any, TContext = any, TArgs = any>(schema: GraphQLSchema): GraphQLSchemaWithFragmentReplacements => {
-  const tracer: IMiddlewareResolver<TSource, TContext, TArgs> = async (resolver, parent, args, ctx, info) => {
+  const tracer: IMiddlewareResolver<TSource, TContext, TArgs> = async (resolver, _parent, _args, _ctx, info) => {
     const fieldPath = fieldPathFromInfo(info);
     return AWSXRay.captureAsyncFunc(`GraphQL ${fieldPath}`, async (subsegment) => {
       // When AWS_XRAY_CONTEXT_MISSING is set to LOG_MISSING and no context is found then subsegment is undefined.
