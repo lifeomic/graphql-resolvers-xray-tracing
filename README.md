@@ -31,4 +31,4 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
 ```
 
 ## AWS Segment Size Limitation
-AWS has a 64K upload limit when submitting segements to AWS see [](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-segments).  If you try and submit more than this limit you will see the follow aws error message "<date> [ERROR] Segment too large to send: {<traceinformation...}".  One approach to reduce the size of the batch upload, is to [Node - setStreamingThreshold](https://docs.aws.amazon.com/xray-sdk-for-nodejs/latest/reference/AWSXRay.html).  
+AWS has a 64K upload limit when submitting segements to AWS see [AWSXRay concepts segments](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-segments).  If you try and submit more than this limit you will see the follow aws error message "<date> [ERROR] Segment too large to send: {<traceinformation...}".  One approach to remove this error, is to reduce the size of the batch upload (eg.. setStreamingThreshold(0) which will send each subsegment on close). See [Node - setStreamingThreshold](https://docs.aws.amazon.com/xray-sdk-for-nodejs/latest/reference/AWSXRay.html).  
