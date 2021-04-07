@@ -19,6 +19,7 @@
     "posttest": "yarn lint && tsc --noEmit",
     "postinstall": "if [ -d test ]; then yarn types; fi",
     "coverage": "nyc report --reporter=text-lcov > ./.nyc_output/lcov.info",
+    "coverage_report": "nyc --reporter=lcov --reporter=text-summary ava",
     "prepublishOnly": "yarn tsc",
     "cleanTypes": "rm -rf test/__generated__"
   },

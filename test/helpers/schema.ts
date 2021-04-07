@@ -2,7 +2,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { v4 as uuid } from 'uuid';
 import { loadFiles } from '@graphql-toolkit/file-loading';
 import path from 'path';
-import traceResolvers from '../../src/traceResolvers';
+import traceResolvers, { TraceOptions } from '../../src/traceResolvers';
 
 const blocked = new Map();
 
@@ -80,10 +80,14 @@ const resolvers = {
   }
 };
 
-export function traceSchema () {
+export function traceSchema (options: TraceOptions|null) {
   const schema = makeExecutableSchema({
     typeDefs: loadFiles(path.join(__dirname, '**/*.graphql')),
     resolvers
   });
+
+  if (options) {
+    return traceResolvers(schema, options);
+  }
   return traceResolvers(schema);
 }

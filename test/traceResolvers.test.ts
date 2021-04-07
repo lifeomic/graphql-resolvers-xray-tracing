@@ -1,5 +1,6 @@
 import { graphql } from 'graphql';
 import { traceSchema } from './helpers/schema';
+import { TraceOptions } from '../src/traceResolvers';
 import nock from 'nock';
 import anyTest, { ExecutionContext, TestInterface } from 'ava';
 import AWSXRay, { Segment, Subsegment } from 'aws-xray-sdk-core';
@@ -19,9 +20,12 @@ interface TestContext {
 }
 
 const test = anyTest as TestInterface<TestContext>;
+const traceOptions: TraceOptions = {
+  enabled: true
+};
 
 test.beforeEach(function (test) {
-  const schema = traceSchema();
+  const schema = traceSchema(traceOptions);
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
 
