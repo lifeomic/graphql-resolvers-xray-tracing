@@ -36,3 +36,20 @@ AWS has a 64K upload limit when submitting segements to AWS see [AWSXRay concept
 If you try and submit more than this limit you will see the following aws error message<br>**"<date> [ERROR] Segment too large to send: {<traceinformation...}"**
   
 One approach to remove this error, is to reduce the size of the batch upload (eg.. setStreamingThreshold(0) which will send each subsegment on close). See [SDK - nodejs - setStreamingThreshold](https://docs.aws.amazon.com/xray-sdk-for-nodejs/latest/reference/AWSXRay.html).  
+
+## Runtime Options
+
+To add the ability to enable/disable segment creation at runtime, pass in an options object like so:
+
+```javascript
+const traceResolvers = require('@lifeomic/graphql-resolvers-xray-tracing');
+const schema = makeExecutableSchema( ... );
+
+const traceOptions = {
+  enabled: true
+};
+
+traceResolvers(schema, traceOptions);
+```
+
+traceOptions, if declared at the module level, can then be used to programatically turn on/off segment creation.

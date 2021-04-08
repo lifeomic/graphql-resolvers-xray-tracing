@@ -1,5 +1,6 @@
 import { graphql, GraphQLError, Source } from 'graphql';
 import { traceSchema } from './helpers/schema';
+import { TraceOptions } from '../src/traceResolvers';
 import nock from 'nock';
 import anyTest, { TestInterface } from 'ava';
 import AWSXRay from 'aws-xray-sdk-core';
@@ -25,11 +26,14 @@ interface TestContext {
 }
 
 const test = anyTest as TestInterface<TestContext>;
+const traceOptions: TraceOptions = {
+  enabled: true
+};
 
 test.beforeEach((t) => {
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
-  const schema = traceSchema();
+  const schema = traceSchema(traceOptions);
 
   t.context.graphql = (query) => graphql(schema, query);
 });
