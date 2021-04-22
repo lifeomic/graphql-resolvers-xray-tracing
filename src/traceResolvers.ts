@@ -23,7 +23,7 @@ export default <TSource = any, TContext = any, TArgs = any>(schema: GraphQLSchem
         const result = await resolver();
         subsegment?.close();
         return result;
-      } catch (error: any) {
+      } catch (error) {
         subsegment?.close(error);
         throw error;
       }
