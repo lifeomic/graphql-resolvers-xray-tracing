@@ -3,7 +3,7 @@ import { traceSchema } from './helpers/schema';
 import nock from 'nock';
 import anyTest, { TestInterface } from 'ava';
 import AWSXRay from 'aws-xray-sdk-core';
-import { ExecutionResult, ExecutionResultDataDefault } from 'graphql/execution/execute';
+import { ExecutionResult } from 'graphql/execution/execute';
 AWSXRay.setContextMissingStrategy('LOG_ERROR');
 AWSXRay.setLogger({
   debug: () => undefined,
@@ -21,7 +21,7 @@ const source = new Source('', '', {
 });
 
 interface TestContext {
-  graphql: <TData = ExecutionResultDataDefault>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
+  graphql: <TData = Record<string, any>>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
 }
 
 const test = anyTest as TestInterface<TestContext>;
@@ -31,7 +31,7 @@ test.beforeEach((t) => {
   nock.enableNetConnect('127.0.0.1');
   const schema = traceSchema();
 
-  t.context.graphql = (query) => graphql(schema, query);
+  t.context.graphql = <T = Record<string, any>>(query: GraphQlQuery) => graphql(schema, query) as Promise<ExecutionResult<T>>;
 });
 
 test.afterEach.always(() => {

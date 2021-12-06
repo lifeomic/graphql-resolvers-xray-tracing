@@ -1,4 +1,4 @@
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 import { v4 as uuid } from 'uuid';
 import { loadFiles } from '@graphql-toolkit/file-loading';
 import path from 'path';
