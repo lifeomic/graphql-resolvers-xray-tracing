@@ -27,7 +27,7 @@
   "main": "src/traceResolvers.js",
   "types": "src/traceResolvers.d.ts",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "keywords": [
     "graphql",
