@@ -1,22 +1,10 @@
 {
+  "extends": "@lifeomic/typescript-config",
   "compilerOptions": {
     "module": "commonjs",
-    "noUnusedLocals": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "moduleResolution": "node",
     "target": "es2017",
     "lib": ["es2020", "esnext.asynciterable"],
-    "pretty": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
     "resolveJsonModule": true,
-    "rootDir": ".",
     "skipLibCheck": true,
     "declaration": true,
     "noEmit": true

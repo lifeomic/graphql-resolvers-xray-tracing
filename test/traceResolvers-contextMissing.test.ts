@@ -1,7 +1,6 @@
 import { graphql, GraphQLError, Source } from 'graphql';
 import { traceSchema } from './helpers/schema';
 import nock from 'nock';
-import anyTest, { TestInterface } from 'ava';
 import AWSXRay from 'aws-xray-sdk-core';
 import { ExecutionResult } from 'graphql/execution/execute';
 AWSXRay.setContextMissingStrategy('LOG_ERROR');
@@ -9,7 +8,7 @@ AWSXRay.setLogger({
   debug: () => undefined,
   info: () => undefined,
   warn: () => undefined,
-  error: () => undefined
+  error: () => undefined,
 });
 AWSXRay.capturePromise();
 
@@ -17,56 +16,47 @@ type GraphQlQuery = Parameters<typeof graphql>[1];
 
 const source = new Source('', '', {
   column: 3,
-  line: 1
+  line: 1,
 });
 
-interface TestContext {
-  graphql: <TData = Record<string, any>>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
-}
+let graphqlQuery: <TData = Record<string, any>>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
 
-const test = anyTest as TestInterface<TestContext>;
-
-test.beforeEach((t) => {
+beforeEach(() => {
   nock.disableNetConnect();
   nock.enableNetConnect('127.0.0.1');
   const schema = traceSchema();
 
-  t.context.graphql = <T = Record<string, any>>(query: GraphQlQuery) => graphql(schema, query) as Promise<ExecutionResult<T>>;
+  graphqlQuery = <T = Record<string, any>>(query: GraphQlQuery) => graphql(schema, query) as Promise<ExecutionResult<T>>;
 });
 
-test.afterEach.always(() => {
+afterEach(() => {
   nock.enableNetConnect();
   nock.cleanAll();
 });
 
-test('Traced resolvers can return a value', async (t) => {
-  const { graphql } = t.context;
-  const result = await graphql('{ hello }');
+test('Traced resolvers can return a value', async () => {
+  const result = await graphqlQuery('{ hello }');
 
-  if (result.errors) {
-    throw result.errors[0];
-  }
-  t.deepEqual(result, {
+  expect(result.errors).toBeUndefined();
+  expect(result).toEqual({
     data: {
-      hello: 'world'
-    }
+      hello: 'world',
+    },
   });
 });
 
-test('Traced resolvers will throw exceptions when throwsSynchronously', async (t) => {
-  const { graphql } = t.context;
-  const result = await graphql('{ throwsSynchronously }');
+test('Traced resolvers will throw exceptions when throwsSynchronously', async () => {
+  const result = await graphqlQuery('{ throwsSynchronously }');
 
   const expected = new GraphQLError('Some error', undefined, source, [2], ['throwsSynchronously']);
-  t.is(result.errors?.length, 1);
-  t.deepEqual(result.errors, [expected]);
+  expect(result.errors).toHaveLength(1);
+  expect(result.errors).toStrictEqual([expected]);
 });
 
-test('Traced resolvers will throw exceptions when throwsAsynchronously', async (t) => {
-  const { graphql } = t.context;
-  const result = await graphql('{ throwsAsynchronously }');
+test('Traced resolvers will throw exceptions when throwsAsynchronously', async () => {
+  const result = await graphqlQuery('{ throwsAsynchronously }');
 
   const expected = new GraphQLError('Some error', undefined, source, [2], ['throwsAsynchronously']);
-  t.is(result.errors?.length, 1);
-  t.deepEqual(result.errors, [expected]);
+  expect(result.errors).toHaveLength(1);
+  expect(result.errors).toStrictEqual([expected]);
 });

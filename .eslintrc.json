@@ -1,0 +1,13 @@
+{
+  "ignorePatterns": [
+     "**/__generated__/**/*"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "@lifeomic/standards"
+  ],
+  "env": {
+    "jest": true,
+    "node": true
+  }
+}
