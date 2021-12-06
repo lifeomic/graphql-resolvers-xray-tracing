@@ -1,9 +1,0 @@
-test/
-.eslintrc*
-.travis*
-TODO.MD
-.nyc_output/
-images/
-.github/
-.eslintrc.yml
-.codegen.yml

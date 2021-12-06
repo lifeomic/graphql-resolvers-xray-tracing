@@ -1,10 +1,9 @@
-import { graphql } from 'graphql';
+import { graphql, ExecutionResult } from 'graphql';
 import { traceSchema } from './helpers/schema';
 import nock from 'nock';
 import anyTest, { ExecutionContext, TestInterface } from 'ava';
 import AWSXRay, { Segment, Subsegment } from 'aws-xray-sdk-core';
 import retryPromise from 'promise-retry';
-import { ExecutionResult, ExecutionResultDataDefault } from 'graphql/execution/execute';
 import { Mutation } from './__generated__/graphql';
 
 AWSXRay.capturePromise();
@@ -15,7 +14,7 @@ type Namespace = ReturnType<typeof AWSXRay.getNamespace>;
 interface TestContext {
   ns: Namespace;
   segment: Segment;
-  graphql: <TData = ExecutionResultDataDefault>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
+  graphql: <TData = Record<string, any>>(query: GraphQlQuery) => Promise<ExecutionResult<TData>>;
 }
 
 const test = anyTest as TestInterface<TestContext>;
@@ -31,10 +30,10 @@ test.beforeEach(function (test) {
   const segment = new AWSXRay.Segment('parent');
   test.context.segment = segment;
 
-  test.context.graphql = ns.bind(function (query: GraphQlQuery) {
+  test.context.graphql = ns.bind(function <T = Record<string, any>> (query: GraphQlQuery) {
     AWSXRay.setSegment(segment);
     try {
-      return graphql(schema, query);
+      return graphql(schema, query) as Promise<ExecutionResult<T>>;
     } finally {
       segment.close();
     }

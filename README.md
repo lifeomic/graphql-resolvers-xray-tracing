@@ -31,7 +31,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
 ```
 
 ## AWS Segment Size Limitation
-AWS has a 64K upload limit when submitting segements to AWS see [AWSXRay concepts segments](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-segments).  
+AWS has a 64K upload limit when submitting segments to AWS see [AWSXRay concepts segments](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-segments).  
 
 If you try and submit more than this limit you will see the following aws error message<br>**"<date> [ERROR] Segment too large to send: {<traceinformation...}"**
   

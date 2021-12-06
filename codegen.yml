@@ -3,7 +3,7 @@ schema: ./test/**/*.graphql
 generates:
   test/__generated__/graphql.ts:
     plugins:
-      - typescript
+      - "@graphql-codegen/typescript"
     config:
       useIndexSignature: true
       namingConvention: keep
