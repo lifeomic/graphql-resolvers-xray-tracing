@@ -21,13 +21,11 @@ jobs:
         env:
           LAMBDA_REMOTE_DOCKER: true
         run: yarn test
-      - name: Coverage
-        run: yarn coverage
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: .nyc_output/lcov.info
+          path-to-lcov: coverage/lcov.info
           flag-name: run-${{ matrix.node }}
           parallel: true
   preRelease:

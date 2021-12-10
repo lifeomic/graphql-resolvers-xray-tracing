@@ -6,24 +6,24 @@ import traceResolvers from '../../src/traceResolvers';
 
 const blocked = new Map();
 
-function hello () {
+const hello = () => {
   return 'world';
-}
+};
 
-function throwsSynchronously () {
+const throwsSynchronously = () => {
   throw new Error('Some error');
-}
+};
 
-function throwsAsynchronously () {
+const throwsAsynchronously = () => {
   throw new Error('Some error');
-}
+};
 
-function createBlocking () {
+const createBlocking = () => {
   const id = uuid();
 
   let resolvePromise;
   let rejectPromise;
-  const promise = new Promise(function (resolve, reject) {
+  const promise = new Promise((resolve, reject) => {
     resolvePromise = resolve;
     rejectPromise = reject;
   });
@@ -31,59 +31,59 @@ function createBlocking () {
   blocked.set(id, {
     resolve: resolvePromise,
     reject: rejectPromise,
-    promise
+    promise,
   });
   return id;
-}
+};
 
 type Args = { id: string };
 
-function waitFor (obj: any, args: Args) {
+const waitFor = (obj: any, args: Args) => {
   const { promise } = blocked.get(args.id);
   return promise;
-}
+};
 
-function resolve (obj: any, args: Args) {
+const resolve = (obj: any, args: Args) => {
   const { resolve } = blocked.get(args.id);
   resolve();
-}
+};
 
-function reject (obj: any, args: Args) {
+const reject = (obj: any, args: Args) => {
   const id = args.id;
   const { reject } = blocked.get(id);
   reject(new Error(`Blocking work ${id} failed`));
-}
+};
 
-async function parent () {
+const parent = () => {
   return {};
-}
+};
 
-async function parentName () {
+const parentName = () => {
   return 'Parent name';
-}
+};
 
 const resolvers = {
   Parent: {
-    name: parentName
+    name: parentName,
   },
   Query: {
     hello,
     throwsSynchronously,
     throwsAsynchronously,
     waitFor,
-    parent
+    parent,
   },
   Mutation: {
     createBlocking,
     resolve,
-    reject
-  }
+    reject,
+  },
 };
 
-export function traceSchema () {
+export const traceSchema = () => {
   const schema = makeExecutableSchema({
     typeDefs: loadFiles(path.join(__dirname, '**/*.graphql')),
-    resolvers
+    resolvers,
   });
   return traceResolvers(schema);
-}
+};

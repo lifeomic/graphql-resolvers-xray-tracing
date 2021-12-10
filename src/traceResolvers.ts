@@ -3,7 +3,7 @@ import AWSXRay from 'aws-xray-sdk-core';
 import { GraphQLResolveInfo, GraphQLSchema, ResponsePath } from 'graphql';
 import { GraphQLSchemaWithFragmentReplacements, IMiddlewareResolver } from 'graphql-middleware/dist/types';
 
-function fieldPathFromInfo (info: GraphQLResolveInfo) {
+const fieldPathFromInfo = (info: GraphQLResolveInfo) => {
   let path: ResponsePath | undefined = info.path;
   const segments: Array<number | string> = [];
   while (path) {
@@ -12,7 +12,7 @@ function fieldPathFromInfo (info: GraphQLResolveInfo) {
   }
 
   return segments.join('.');
-}
+};
 
 export default <TSource = any, TContext = any, TArgs = any>(schema: GraphQLSchema): GraphQLSchemaWithFragmentReplacements => {
   const tracer: IMiddlewareResolver<TSource, TContext, TArgs> = async (resolver, _parent, _args, _ctx, info) => {
@@ -23,8 +23,8 @@ export default <TSource = any, TContext = any, TArgs = any>(schema: GraphQLSchem
         const result = await resolver();
         subsegment?.close();
         return result;
-      } catch (error) {
-        subsegment?.close(error);
+      } catch (error: any | Error) {
+        subsegment?.close(error as Error);
         throw error;
       }
     });

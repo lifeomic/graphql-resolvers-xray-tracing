@@ -1,6 +1,8 @@
 node_modules/
 .nyc_output/
+coverage
 
 src/**/*.js
 test/**/*.js
 **/__generated__/
+yarn-error.log

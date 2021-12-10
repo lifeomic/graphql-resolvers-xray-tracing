@@ -22,6 +22,12 @@ jobs:
         env:
           LAMBDA_REMOTE_DOCKER: true
         run: yarn test
+      - name: Coverage Report
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: coverage/lcov.info
+          flag-name: master
       - id: tagExistsAndVersion
         name: Check if tags exist in NPM and GIT
         run: |
